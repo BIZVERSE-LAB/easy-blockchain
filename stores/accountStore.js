@@ -119,6 +119,7 @@ class Store {
     }
     // Non-dapp browsers...
     else {
+      this.setStore({ account: { isMetaMaskInstalled: true }})
       console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
     }
   }

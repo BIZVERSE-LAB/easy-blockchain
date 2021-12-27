@@ -181,7 +181,8 @@ const coreTheme = {
     },
     MuiInputBase: {
       input: {
-        fontSize: '14px'
+        fontSize: '14px',
+        color: '#fff',
       },
       root: {
         margin: '0px',

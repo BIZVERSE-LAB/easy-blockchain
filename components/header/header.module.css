@@ -10,6 +10,8 @@
   margin-left: 12px !important;
   min-height: 40px;
   width: 250px;
+  background: linear-gradient(317.15deg, #6E34CD 3.65%, #C10297 91.98%);
+  color: #fff !important;
 }
 
 .accountIcon {

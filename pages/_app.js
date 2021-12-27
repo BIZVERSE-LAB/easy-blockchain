@@ -12,7 +12,7 @@ import {
 
 import '../styles/globals.css'
 
-import lightTheme from '../theme/light';
+import lightTheme from '../theme/dark';
 import darkTheme from '../theme/dark';
 
 function MyApp({ Component, pageProps }) {
