@@ -3,6 +3,15 @@ import BigNumber from 'bignumber.js'
 export const Polygon_ChainId_Hex = "0x89";
 export const Polygon_ChainId = 127;
 
+const toHex = (num) => {
+  return '0x'+num.toString(16)
+}
+
+export function getNetworkParam(chainId, chains) {
+  const network = chains.find(item => toHex(item.chainId) === chainId)
+  return network
+}
+
 export function formatCurrency(amount, decimals=2) {
   if(!isNaN(amount)) {
     const formatter = new Intl.NumberFormat(undefined, {

@@ -11,6 +11,7 @@
   background-repeat: no-repeat;
   background-position: 0 0, 0 100%;
   background-color: transparent !important;
+  max-width: 394px;
 }
 
 .addButton {
@@ -53,4 +54,11 @@
   justify-content: flex-start;
   width: 100%;
   margin-bottom: 12px !important;
+}
+
+@media screen and (max-width: 1500px) {
+  .chainContainer {
+    width: 248px;
+    padding: 20px;
+  }
 }

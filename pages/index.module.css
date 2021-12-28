@@ -6,7 +6,7 @@
 }
 
 .containerDark {
-  display: grid;
+  display: flex;
   grid-template-columns: 700px calc(100vw - 717px);
   position: relative;
   box-sizing: border-box;
@@ -16,9 +16,9 @@
 .copyContainer {
   display: flex;
   flex-direction: column;
-  position: sticky;
+  /* position: sticky; */
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   height: fit-content;
   top: 0;
@@ -26,6 +26,7 @@
 
 .copyCentered {
   width: 425px;
+  padding: 0 0 20px;
 }
 
 .headerContainer {
@@ -70,6 +71,7 @@
   align-items: flex-start;
   background: #1c053d;
   padding: 0px 24px 40px;
+  max-width: 1400px;
 }
 
 .cardsContainer {
@@ -170,11 +172,21 @@
   padding: 20px 80px;
 }
 
-@media screen and (max-width: 1700px) {
+.flexBox {
+  grid-template-columns: calc(50% - 15px) calc(50% - 15px);
+  display: grid;
+  grid-gap: 30px;
+  gap: 30px;
+}
+
+.polygon {
+  padding: 70px 0 30px;
+}
+/* @media screen and (max-width: 1700px) {
   .cardsContainer {
     grid-template-columns: calc(50% - 15px) calc(50% - 15px);
   }
-}
+} */
 
 @media screen and (max-width: 1500px) {
   .container {
@@ -182,20 +194,32 @@
   }
 
   .containerDark {
-    grid-template-columns: 500px calc(100vw - 517px);
+    display: grid;
+    grid-template-columns: 537px calc(100vw - 577px);
+    grid-gap: 20px;
+    gap: 20px;
+  }
+
+  .flexBox {
+    grid-gap: 20px;
+    gap: 20px;
+  }
+
+  .copyContainer {
+    padding: 0 24px;
   }
 
   .headerContainer,
   .headerContainerDark {
-    padding: 24px 48px 48px 48px;
+    padding: 24px 20px 48px 20px;
   }
 
   .cardsContainer {
-    padding: 0px 48px 48px;
+    padding: 0px 0 48px;
   }
 
   .sectionsHeader {
-    padding: 20px 48px 10px;
+    padding: 20px 0 10px;
   }
 }
 
@@ -214,11 +238,12 @@
     position: relative;
     top: 0px;
     min-height: 100vh;
+    align-items: center;
   }
 
   .copyCentered {
     position: static;
-    padding-bottom: 0px;
+    padding-bottom: 20px;
   }
 
   .listContainer {
@@ -273,9 +298,15 @@
   .version {
     padding-left: 0;
   }
-  .cardsContainer {
+  .cardsContainer,
+  .flexBox {
     grid-template-columns: 100%;
   }
+
+  .flexBox {
+    padding: 0;
+  }
+
   .listContainer,
   .listContainerDark {
     width: 100vw;

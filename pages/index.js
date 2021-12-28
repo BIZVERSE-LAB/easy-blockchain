@@ -29,6 +29,8 @@ import useSWR from 'swr'
 
 import stores from '../stores'
 import classes from './index.module.css'
+import { tokens } from '../constants/tokens'
+import { networks } from '../constants/networks'
 
 const searchTheme = createMuiTheme({
   palette: {
@@ -85,7 +87,7 @@ const searchTheme = createMuiTheme({
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 function Home({ changeTheme, theme }) {
-  const { data, error } = useSWR('/chains.json', fetcher)
+  const { data, error } = useSWR('https://chainid.network/chains.json', fetcher)
 
   const [ layout, setLayout ] = useState('grid')
   const [ search, setSearch ] = useState('')
@@ -146,7 +148,7 @@ function Home({ changeTheme, theme }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Chainlist</title>
+        <title>Chain&TokenList</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
 
@@ -154,9 +156,16 @@ function Home({ changeTheme, theme }) {
         <div className={ theme.palette.type === 'dark' ? classes.containerDark : classes.container }>
           <div className={ classes.copyContainer }>
             <div className={ classes.copyCentered }>
-              <Typography variant='h1' className={ classes.chainListSpacing }><span className={ classes.helpingUnderline }>Chainlist</span></Typography>
+              <Typography variant='h1' className={ classes.chainListSpacing }><span className={ classes.helpingUnderline }>Chain&TokenList</span></Typography>
               <Typography variant='h2' className={ classes.helpingParagraph }>Helping users connect to EVM powered networks</Typography>
               <Typography className={classes.subTitle}>Chainlist is a list of EVM networks. Users can use the information to connect their wallets and Web3 middleware providers to the appropriate Chain ID and Network ID to connect to the correct chain.</Typography>
+            </div>
+            <div className={ classes.polygon }> 
+             <Chain chain={ networks[0] } />
+            </div>
+            <div className={ classes.flexBox }>
+              <Chain chain={ tokens[0] } isToken chains={data} />
+              <Chain chain={ tokens[1] } isToken chains={data} />
             </div>
           </div>
           <div className={ theme.palette.type === 'dark' ? classes.listContainerDark : classes.listContainer }>
@@ -197,13 +206,13 @@ function Home({ changeTheme, theme }) {
                 {
                   data && data.filter((chain) => {
                     if(search === '') {
-                      return (chain.method !=="wallet_watchAsset")
+                      return true
                     } else {
                       //filter
-                      return (chain.method !=="wallet_watchAsset" && (chain.chain.toLowerCase().includes(search.toLowerCase()) ||
+                      return (chain.chain.toLowerCase().includes(search.toLowerCase()) ||
                       chain.chainId.toString().toLowerCase().includes(search.toLowerCase()) ||
                       chain.name.toLowerCase().includes(search.toLowerCase()) ||
-                      (chain.nativeCurrency ? chain.nativeCurrency.symbol : '').toLowerCase().includes(search.toLowerCase())))
+                      (chain.nativeCurrency ? chain.nativeCurrency.symbol : '').toLowerCase().includes(search.toLowerCase()))
                     }
                   }).map((chain, idx) => {
                     return <Chain chain={ chain } key={ idx } />
@@ -218,18 +227,18 @@ function Home({ changeTheme, theme }) {
               </Typography>
               <div className={ classes.cardsContainer }>
                 {
-                  data && data.filter((chain) => {
+                  tokens.filter((chain) => {
                     if(search === '') {
-                      return (chain.method ==="wallet_watchAsset")
+                      return true
                     } else {
                       //filter
-                      return (chain.method ==="wallet_watchAsset" &&(chain.chain.toLowerCase().includes(search.toLowerCase()) ||
+                      return (chain.chainName.toLowerCase().includes(search.toLowerCase()) ||
                       chain.chainId.toString().toLowerCase().includes(search.toLowerCase()) ||
-                      chain.name.toLowerCase().includes(search.toLowerCase()) ||
-                      (chain.nativeCurrency ? chain.nativeCurrency.symbol : '').toLowerCase().includes(search.toLowerCase())))
+                      chain.tokenName.toLowerCase().includes(search.toLowerCase()) ||
+                      (chain.options ? chain.options.symbol : '').toLowerCase().includes(search.toLowerCase()))
                     }
                   }).map((chain, idx) => {
-                    return <Chain chain={ chain } key={ idx } />
+                    return <Chain chain={ chain } key={ idx } isToken chains={data} />
                   })
                 }
               </div>
@@ -243,10 +252,13 @@ function Home({ changeTheme, theme }) {
           >
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Metamask not detected. Please <a className={classes.link} href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en" target="_blank" rel="noreferrer"> install extension </a>  and try again
+                Metamask not detected. Please <a className={classes.link} href="https://metamask.io/download.html" target="_blank" rel="noreferrer"> install extension </a>  and try again
               </DialogContentText>
             </DialogContent>
           </Dialog>
+        </div>
+        <div>
+          <p>©2021 Copyright by Chainlist</p>
         </div>
       </main>
     </div>

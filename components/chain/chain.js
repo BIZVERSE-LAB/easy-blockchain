@@ -7,7 +7,7 @@ import Web3 from 'web3';
 import classes from './chain.module.css'
 
 import stores from '../../stores/index.js'
-import { getProvider } from '../../utils'
+import { getProvider, getNetworkParam } from '../../utils'
 
 import {
   ERROR,
@@ -16,9 +16,8 @@ import {
   ACCOUNT_CONFIGURED
 } from '../../stores/constants'
 
-export default function Chain({ chain }) {
+export default function Chain({ chain, isToken, chains }) {
   const router = useRouter()
-  const watchAsset = chain.method === 'wallet_watchAsset' 
   const [ account, setAccount ] = useState(null)
 
   useEffect(() => {
@@ -47,7 +46,35 @@ export default function Chain({ chain }) {
       return
     }
 
-    const params = {
+    if (isToken) {
+      const accounts = await window.web3.eth.getAccounts()
+      if (window.ethereum.chainId !== chain.chainId) {
+        const chainList = getNetworkParam(chain.chainId, chains)
+        const params = {
+          chainId: toHex(chainList.chainId), // A 0x-prefixed hexadecimal string
+          chainName: chainList.name,
+          nativeCurrency: {
+            name: chainList.nativeCurrency.name,
+            symbol: chainList.nativeCurrency.symbol, // 2-6 characters long
+            decimals: chainList.nativeCurrency.decimals,
+          },
+          rpcUrls: chainList.rpc,
+          blockExplorerUrls: [ ((chainList.explorers && chainList.explorers.length > 0 && chainList.explorers[0].url) ? chainList.explorers[0].url : chainList.infoURL) ]
+        }
+        await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [params, accounts[0]],
+          })
+        }
+      await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: "ERC20",
+          options: chain.options
+        }
+      })
+    } else {
+      const params = {
       chainId: toHex(chain.chainId), // A 0x-prefixed hexadecimal string
       chainName: chain.name,
       nativeCurrency: {
@@ -58,21 +85,6 @@ export default function Chain({ chain }) {
       rpcUrls: chain.rpc,
       blockExplorerUrls: [ ((chain.explorers && chain.explorers.length > 0 && chain.explorers[0].url) ? chain.explorers[0].url : chain.infoURL) ]
     }
-
-    if (chain.method === 'wallet_watchAsset') {
-      //const accounts = await window.web3.eth.getAccounts()
-      await window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [params],
-        })
-      await window.ethereum.request({
-          method: 'wallet_watchAsset',
-          params: {
-            type: "ERC20",
-            options: chain.nativeCurrency
-          }
-        })
-    } else {
       window.web3.eth.getAccounts((error, accounts) => {
         window.ethereum.request({
           method: 'wallet_addEthereumChain',
@@ -96,7 +108,7 @@ export default function Chain({ chain }) {
         imToken: 'Add to imToken',
         Wallet: 'Add to Wallet'
       }
-      return chain.method === 'wallet_watchAsset' ? 'Add to wallet' : providerTextList[getProvider()]
+      return isToken ? 'Add to wallet' : providerTextList[getProvider()]
     } else {
       return 'Connect wallet'
     }
@@ -109,16 +121,16 @@ export default function Chain({ chain }) {
 
   return (
     <Paper elevation={ 1 } className={ classes.chainContainer } key={ chain.chainId }>
-      {watchAsset &&
+      {isToken &&
         <div className={ classes.chainNameContainer }>
           <div className={ classes.dataPoint }>
-            <Typography variant='h3' className={ classes.name} >BIZVERSE</Typography>
+            <Typography variant='h3' className={ classes.name} >{chain.chainName}</Typography>
           </div>
         </div>
       }
       <div className={ classes.chainNameContainer }>
         <img
-          src={chain.icon || `chains/${chain.chainId}.png`}
+          src={isToken ? chain.options.image : chain.icon || `chains/${chain.chainId}.png`}
           onError={e => {
             e.target.onerror = null;
             e.target.src = "/chains/unknown-logo.png";
@@ -130,12 +142,23 @@ export default function Chain({ chain }) {
         <Tooltip title={ chain.name }>
           <Typography variant='h3' className={ classes.name } noWrap>
             <a href={ chain.infoURL } target="_blank" rel="noreferrer">
-              { chain.name }
+              { isToken ? chain.tokenName : chain.name }
             </a>
           </Typography>
         </Tooltip>
       </div>
-      {!watchAsset &&
+      {isToken ? (
+        <div className={ classes.chainInfoContainer }>
+          <div className={ classes.dataPoint }>
+            <Typography variant='subtitle1' color='textSecondary' className={ classes.dataPointHeader} >Layer</Typography>
+            <Typography variant='h5'>{ chain.chainId }</Typography>
+          </div>
+          <div className={ classes.dataPoint }>
+            <Typography variant='subtitle1' color='textSecondary' className={ classes.dataPointHeader}>Token</Typography>
+            <Typography variant='h5'>{ chain.options ? chain.options.symbol : 'none' }</Typography>
+          </div>
+        </div>
+      ) :
         <div className={ classes.chainInfoContainer }>
           <div className={ classes.dataPoint }>
             <Typography variant='subtitle1' color='textSecondary' className={ classes.dataPointHeader} >ChainID</Typography>
