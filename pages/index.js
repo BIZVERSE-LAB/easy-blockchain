@@ -258,7 +258,7 @@ function Home({ changeTheme, theme }) {
           </Dialog>
         </div>
         <div>
-          <p>©2021 Copyright by Chainlist</p>
+          <p>We are using Chainlist's opensource</p>
         </div>
       </main>
     </div>

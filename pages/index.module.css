@@ -317,4 +317,12 @@
     flex-direction: column-reverse;
     padding: 20px;
   }
+
+  .helpingUnderline {
+    font-size: 35px;
+  }
+
+  .chainContainer {
+    width: 100%;
+  }
 }

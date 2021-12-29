@@ -11,7 +11,7 @@
   background-repeat: no-repeat;
   background-position: 0 0, 0 100%;
   background-color: transparent !important;
-  max-width: 394px;
+  max-width: 300px;
 }
 
 .addButton {
@@ -60,5 +60,13 @@
   .chainContainer {
     width: 248px;
     padding: 20px;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .chainContainer {
+    width: calc(100vw - 40px);
+    max-width: 100%;
   }
 }
