@@ -31,12 +31,20 @@
 .chainInfoContainer {
   display: flex;
   align-items: flex-start;
-  margin-left: 52px;
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 
-.dataPoint {
-  flex: 1;
+.tooltip {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  background: #9c18af;
+  border-top-right-radius: 10px;
+}
+
+.text {
+  margin: 5px 4px;
 }
 
 .dataPointHeader {

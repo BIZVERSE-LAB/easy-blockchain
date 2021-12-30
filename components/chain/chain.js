@@ -85,7 +85,7 @@ export default function Chain({ chain, isToken, chains }) {
         rpcUrls: chain.rpc,
         blockExplorerUrls: [ ((chain.explorers && chain.explorers.length > 0 && chain.explorers[0].url) ? chain.explorers[0].url : chain.infoURL) ]
       }
-      
+
       window.web3.eth.getAccounts((error, accounts) => {
         window.ethereum.request({
           method: 'wallet_addEthereumChain',
@@ -122,11 +122,8 @@ export default function Chain({ chain, isToken, chains }) {
 
   return (
     <Paper elevation={ 1 } className={ classes.chainContainer } key={ chain.chainId }>
-      {isToken &&
-        <div className={ classes.chainNameContainer }>
-          <div className={ classes.dataPoint }>
-            <Typography variant='h3' className={ classes.name} >{chain.chainName}</Typography>
-          </div>
+      {!isToken && <div className={classes.tooltip}>
+          <p className={classes.text}>Chain</p>
         </div>
       }
       <div className={ classes.chainNameContainer }>
@@ -140,7 +137,7 @@ export default function Chain({ chain, isToken, chains }) {
           height={ 28 }
           className={ classes.avatar }
         />
-        <Tooltip title={ chain.name }>
+        <Tooltip title={ isToken ? chain.tokenName : chain.name }>
           <Typography variant='h3' className={ classes.name } noWrap>
             <a href={ chain.infoURL } target="_blank" rel="noreferrer">
               { isToken ? chain.tokenName : chain.name }
@@ -152,10 +149,10 @@ export default function Chain({ chain, isToken, chains }) {
         <div className={ classes.chainInfoContainer }>
           <div className={ classes.dataPoint }>
             <Typography variant='subtitle1' color='textSecondary' className={ classes.dataPointHeader} >Layer</Typography>
-            <Typography variant='h5'>{ chain.chainId }</Typography>
+            <Typography variant='h5'>{ chain.chainName }</Typography>
           </div>
           <div className={ classes.dataPoint }>
-            <Typography variant='subtitle1' color='textSecondary' className={ classes.dataPointHeader}>Token</Typography>
+            <Typography variant='subtitle1' color='textSecondary' className={ classes.dataPointHeader}>Symbol</Typography>
             <Typography variant='h5'>{ chain.options ? chain.options.symbol : 'none' }</Typography>
           </div>
         </div>

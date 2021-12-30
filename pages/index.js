@@ -156,9 +156,25 @@ function Home({ changeTheme, theme }) {
         <div className={ theme.palette.type === 'dark' ? classes.containerDark : classes.container }>
           <div className={ classes.copyContainer }>
             <div className={ classes.copyCentered }>
-              <Typography variant='h1' className={ classes.chainListSpacing }><span className={ classes.helpingUnderline }>Chain&TokenList</span></Typography>
+              <Typography variant='h1' className={ classes.chainListSpacing }><img className={classes.logo} src="/logo.png" /></Typography>
               <Typography variant='h2' className={ classes.helpingParagraph }>Helping users connect to EVM powered networks</Typography>
-              <Typography className={classes.subTitle}>Chainlist is a list of EVM networks. Users can use the information to connect their wallets and Web3 middleware providers to the appropriate Chain ID and Network ID to connect to the correct chain.</Typography>
+              <Typography className={classes.subTitle}>Easy Blockchain is a list of EVM networks. Users can use the information to connect their wallets and Web3 middleware providers to the appropriate Chain ID and Network ID to connect to the correct chain.</Typography>
+            </div>
+            <div className={classes.flex}>
+              <div className={classes.iconWrapper}>
+                <a href="https://t.me/easyblockchainorg" className={classes.icon} target="blank">
+                  <img  src="/chains/telegram.png" className={ classes.image} />
+                </a>
+              </div>
+              <div className={classes.iconWrapper}>
+                <a href="https://twitter.com/blockchain_easy" className={classes.icon} target="blank">
+                  <img  src="/chains/twitter.png" className={ classes.image} />
+                </a>
+              </div><div className={classes.iconWrapper}>
+                <a href="https://www.facebook.com/easyblockchain.org" className={classes.icon} target="blank">
+                  <img  src="/chains/facebook.png" className={ classes.image} />
+                </a>
+              </div>
             </div>
             <div className={ classes.polygon }> 
              <Chain chain={ networks[0] } />
@@ -177,7 +193,7 @@ function Home({ changeTheme, theme }) {
                       fullWidth
                       className={ classes.searchContainer }
                       variant="outlined"
-                      placeholder="ETH, Fantom, ..."
+                      placeholder="ETH, BIVE, ..."
                       value={ search }
                       color="#fff"
                       onChange={ onSearchChanged }
@@ -187,7 +203,7 @@ function Home({ changeTheme, theme }) {
                         </InputAdornment>,
                         startAdornment: <InputAdornment position="start">
                           <Typography className={ classes.searchInputAdnornment }>
-                            Search Networks
+                            Search
                           </Typography>
                         </InputAdornment>
                       }}

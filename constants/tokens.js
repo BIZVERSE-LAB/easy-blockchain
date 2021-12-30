@@ -10,6 +10,7 @@ export const tokens = [
       decimals: 4,
       image: 'https://bizverse-avatar.s3.ap-southeast-1.amazonaws.com/BIVE-logo.png'
     },
+    infoURL: "https://bizverse.io/"
   },
   {
     chainId: '0x89',
@@ -22,6 +23,7 @@ export const tokens = [
       decimals: 4,
       image: 'https://bizverse-avatar.s3.ap-southeast-1.amazonaws.com/VRA-Coin.png'
     },
+    infoURL: "https://bizverse.io/"
   },
   {
     chainId: '0x1',
