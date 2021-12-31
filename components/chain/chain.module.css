@@ -23,9 +23,11 @@
 .btn {
   background: linear-gradient(317.15deg, #6E34CD 3.65%, #C10297 91.98%);
   color: #fff;
+  transition: transform .5s ease !important;
 }
 
-.name {
+.btn:hover {
+  transform: scale(1.1);
 }
 
 .chainInfoContainer {
@@ -41,6 +43,7 @@
   right: 0;
   background: #9c18af;
   border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .text {
@@ -68,6 +71,11 @@
   .chainContainer {
     width: 248px;
     padding: 20px;
+  }
+
+  .text {
+    margin: 4px;
+    font-size: 10px;
   }
 }
 
