@@ -10,6 +10,7 @@ export default class MyDocument extends Document {
         <Head>
           <link rel="stylesheet" href="/fonts/Inter/Inter.css" />
           <link rel="stylesheet" href="/fonts/Druk/Druk.css" />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-2CQEYT1EWD"></script>
         </Head>
         <body>
           <Main />

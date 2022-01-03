@@ -95,6 +95,19 @@ function Home({ changeTheme, theme }) {
   const [ hideMultichain, setHideMultichain ] = useState('1')
   const [account,setAccount] = useState({})
 
+  const googleElementInit = () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2CQEYT1EWD');
+  };
+
+  useEffect(() => {
+    window.addEventListener("load", googleElementInit);
+    return () => window.removeEventListener("load", googleElementInit);
+  }, []);
+
   const router = useRouter()
   if (router.query.search) {
     setSearch(router.query.search)
