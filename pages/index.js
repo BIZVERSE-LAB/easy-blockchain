@@ -189,13 +189,15 @@ function Home({ changeTheme, theme }) {
                 </a>
               </div>
             </div>
-            <div className={ classes.polygon }> 
-             <Chain chain={ networks[0] } />
+            <div className={ classes.flexBox }> 
+            {networks.map(item => (
+              <Chain key={item.chainId} chain={item} />
+            ))}
             </div>
-            <div className={ classes.flexBox }>
+            {/* <div className={ classes.flexBox }>
               <Chain chain={ tokens[0] } isToken chains={data} />
               <Chain chain={ tokens[1] } isToken chains={data} />
-            </div>
+            </div> */}
           </div>
           <div className={ theme.palette.type === 'dark' ? classes.listContainerDark : classes.listContainer }>
             <div className={ theme.palette.type === 'dark' ? classes.headerContainerDark : classes.headerContainer }>
