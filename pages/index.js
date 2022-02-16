@@ -247,29 +247,6 @@ function Home({ changeTheme, theme }) {
                 }
               </div>
             </div>
-            {/* Tokens */}
-            <div>
-            <Typography variant='h2' className={ classes.sectionsHeader }>
-                Tokens
-              </Typography>
-              <div className={ classes.cardsContainer }>
-                {
-                  tokens.filter((chain) => {
-                    if(search === '') {
-                      return true
-                    } else {
-                      //filter
-                      return (chain.chainName.toLowerCase().includes(search.toLowerCase()) ||
-                      chain.chainId.toString().toLowerCase().includes(search.toLowerCase()) ||
-                      chain.tokenName.toLowerCase().includes(search.toLowerCase()) ||
-                      (chain.options ? chain.options.symbol : '').toLowerCase().includes(search.toLowerCase()))
-                    }
-                  }).map((chain, idx) => {
-                    return <Chain chain={ chain } key={ idx } isToken chains={data} />
-                  })
-                }
-              </div>
-            </div>
           </div>
           <Dialog
             open={!!account.isMetaMaskInstalled}

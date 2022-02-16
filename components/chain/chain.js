@@ -128,7 +128,7 @@ export default function Chain({ chain, isToken, chains }) {
       }
       <div className={ classes.chainNameContainer }>
         <img
-          src={isToken ? chain.options.image : chain.icon || `chains/${chain.chainId}.png`}
+          src={isToken ? chain.options.image : chain.icon || `chains/unknown-logo.png`}
           onError={e => {
             e.target.onerror = null;
             e.target.src = "/chains/unknown-logo.png";
