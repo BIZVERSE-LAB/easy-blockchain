@@ -1,11 +1,11 @@
 export const tokens = [
   {
     chainId: '0x89',
-    chainName: 'Polygon Mainnet',
+    chainName: 'Aurora mainnet',
     tokenName: 'Bizverse',
     type: 'ERC20',
     options: {
-      address: '0x130e6203f05805cd8c44093a53c7b50775eb4ca3',
+      address: '0x130E6203F05805cd8C44093a53C7b50775eb4ca3',
       symbol: 'BIVE',
       decimals: 4,
       image: 'https://bizverse-avatar.s3.ap-southeast-1.amazonaws.com/BIVE-logo.png'
@@ -14,11 +14,11 @@ export const tokens = [
   },
   {
     chainId: '0x89',
-    chainName: 'Polygon Mainnet',
+    chainName: 'Aurora mainnet',
     tokenName: 'Virtual Reality Asset',
     type: 'ERC20',
     options: {
-      address: '0x95ba8dd1bf0019cb5fb363ce67dfe17c299fd53b',
+      address: '0x17bC24b9bDD8A3E7486E3C3458a5954412F2ff60',
       symbol: 'VRA',
       decimals: 4,
       image: 'https://bizverse-avatar.s3.ap-southeast-1.amazonaws.com/VRA-Coin.png'

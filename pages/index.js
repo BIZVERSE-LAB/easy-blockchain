@@ -194,6 +194,10 @@ function Home({ changeTheme, theme }) {
               <Chain key={item.chainId} chain={item} />
             ))}
             </div>
+            <div className={ classes.flexBox }>
+              <Chain chain={ tokens[0] } isToken chains={data} />
+              <Chain chain={ tokens[1] } isToken chains={data} />
+            </div>
           </div>
           <div className={ theme.palette.type === 'dark' ? classes.listContainerDark : classes.listContainer }>
             <div className={ theme.palette.type === 'dark' ? classes.headerContainerDark : classes.headerContainer }>
@@ -247,6 +251,29 @@ function Home({ changeTheme, theme }) {
                 }
               </div>
             </div>
+            {/* Tokens */}
+            {/* <div>
+            <Typography variant='h2' className={ classes.sectionsHeader }>
+                Tokens
+              </Typography>
+              <div className={ classes.cardsContainer }>
+                {
+                  tokens.filter((chain) => {
+                    if(search === '') {
+                      return true
+                    } else {
+                      //filter
+                      return (chain.chainName.toLowerCase().includes(search.toLowerCase()) ||
+                      chain.chainId.toString().toLowerCase().includes(search.toLowerCase()) ||
+                      chain.tokenName.toLowerCase().includes(search.toLowerCase()) ||
+                      (chain.options ? chain.options.symbol : '').toLowerCase().includes(search.toLowerCase()))
+                    }
+                  }).map((chain, idx) => {
+                    return <Chain chain={ chain } key={ idx } isToken chains={data} />
+                  })
+                }
+              </div>
+            </div> */}
           </div>
           <Dialog
             open={!!account.isMetaMaskInstalled}
