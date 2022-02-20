@@ -252,7 +252,7 @@ function Home({ changeTheme, theme }) {
               </div>
             </div>
             {/* Tokens */}
-            {/* <div>
+            <div>
             <Typography variant='h2' className={ classes.sectionsHeader }>
                 Tokens
               </Typography>
@@ -273,7 +273,7 @@ function Home({ changeTheme, theme }) {
                   })
                 }
               </div>
-            </div> */}
+            </div>
           </div>
           <Dialog
             open={!!account.isMetaMaskInstalled}

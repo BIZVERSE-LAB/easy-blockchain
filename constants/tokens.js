@@ -1,7 +1,7 @@
 export const tokens = [
   {
-    chainId: '0x89',
-    chainName: 'Aurora mainnet',
+    chainId: '0x4e454152',
+    chainName: 'Aurora Mainnet',
     tokenName: 'Bizverse',
     type: 'ERC20',
     options: {
@@ -13,8 +13,8 @@ export const tokens = [
     infoURL: "https://bizverse.io/"
   },
   {
-    chainId: '0x89',
-    chainName: 'Aurora mainnet',
+    chainId: '0x4e454152',
+    chainName: 'Aurora Mainnet',
     tokenName: 'Virtual Reality Asset',
     type: 'ERC20',
     options: {

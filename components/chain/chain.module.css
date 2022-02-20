@@ -12,6 +12,7 @@
   background-position: 0 0, 0 100%;
   background-color: transparent !important;
   max-width: 300px;
+  min-width: 248px;
 }
 
 .addButton {

@@ -80,6 +80,7 @@
   grid-template-columns: calc(33% - 15px) calc(33% - 15px) calc(33% - 15px);
   gap: 30px;
   max-width: 1400px;
+  min-width: 863px;
 }
 
 .sectionsHeader {
@@ -246,6 +247,7 @@
 
   .cardsContainer {
     padding: 0px 0 48px;
+    min-width: auto;
   }
 
   .sectionsHeader {
@@ -305,6 +307,7 @@
   }
   .cardsContainer {
     padding: 0 20px 20px;
+    min-width: auto;
   }
 
   .sectionsHeader {
